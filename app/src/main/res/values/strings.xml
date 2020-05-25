@@ -1,3 +1,7 @@
 <resources>
-    <string name="app_name">SecNotes</string>
+    <string name="app_name" translatable="false">Secure Notes</string>
+    <string name="signUp">Sign Up</string>
+    <string name="signIn">Sign In</string>
+    <string name="signUpDescription">First time? Just write your\n secure password.</string>
+    <string name="password">Password</string>
 </resources>
