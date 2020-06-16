@@ -43,6 +43,7 @@
         app:layout_constraintRight_toRightOf="parent"/>
 
     <EditText
+        android:id="@+id/passwordEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="textPassword"
@@ -58,6 +59,7 @@
         android:autofillHints="" />
 
     <Button
+        android:id="@+id/authButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/mediumMargin"

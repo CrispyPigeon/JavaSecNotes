@@ -1,5 +1,10 @@
 <resources>
+    <!-- Administrative -->
     <string name="app_name" translatable="false">Secure Notes</string>
+    <string name="hash_key" translatable="false">secure-notes-mda5-hash-key</string>
+
+
+    <!-- Vocabulary -->
     <string name="signUp">Sign Up</string>
     <string name="signIn">Sign In</string>
     <string name="signUpDescription">First time? Just write your\n secure password.</string>
