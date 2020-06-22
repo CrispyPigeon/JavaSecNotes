@@ -4,14 +4,16 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-import androidx.appcompat.app.AppCompatActivity;
+import javax.inject.Inject;
+import javax.inject.Provider;
 
 public class SharedPreferencesAssistance {
 
+    @Inject
     private Activity _context;
 
-    public SharedPreferencesAssistance(Activity context) {
-        _context = context;
+    public SharedPreferencesAssistance(Provider<Activity> context) {
+        _context = context.get();
     }
 
     public void SaveString(String key, String string) {

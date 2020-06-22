@@ -5,9 +5,16 @@ import org.jetbrains.annotations.NotNull;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
+import javax.inject.Inject;
+import javax.inject.Singleton;
+
+import dagger.Module;
+
+@Module
 public class HashAssistance {
     private String _hashAlgorithm;
 
+    @Inject
     public HashAssistance() {
         _hashAlgorithm = "SHA256";
     }

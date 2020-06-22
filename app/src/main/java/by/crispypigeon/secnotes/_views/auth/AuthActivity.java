@@ -1,4 +1,4 @@
-package by.crispypigeon.secnotes._views.main;
+package by.crispypigeon.secnotes._views.auth;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,11 +7,12 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import by.crispypigeon.secnotes.R;
-import by.crispypigeon.secnotes._presenters.main.MainPresenter;
+import by.crispypigeon.secnotes._presenters.auth.AuthPresenter;
+import by.crispypigeon.secnotes.di.DaggerAppComponent;
 
-public class MainActivity extends AppCompatActivity implements IMainView {
+public class AuthActivity extends AppCompatActivity implements IAuthView {
 
-    private MainPresenter _mainPresenter;
+    private AuthPresenter _authPresenter;
 
     private Button authButton;
     private EditText passwordEditText;
@@ -19,13 +20,19 @@ public class MainActivity extends AppCompatActivity implements IMainView {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_auth);
 
-        _mainPresenter = new MainPresenter(this);
+        _authPresenter = new AuthPresenter(this);
+
+        initializeDI();
 
         initializeControls();
 
         configureEvents();
+    }
+
+    private void initializeDI() {
+        DaggerAppComponent.create().inject(this);
     }
 
     private void initializeControls() {
@@ -35,7 +42,7 @@ public class MainActivity extends AppCompatActivity implements IMainView {
 
     private void configureEvents() {
         authButton.setOnClickListener(x -> {
-            _mainPresenter.authenticateUser(passwordEditText.getText().toString());
+            _authPresenter.authenticateUser(passwordEditText.getText().toString());
         });
     }
 
