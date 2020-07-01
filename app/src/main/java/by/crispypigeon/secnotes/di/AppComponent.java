@@ -11,18 +11,8 @@ import by.crispypigeon.secnotes.assistances.storage.SharedPreferencesAssistance;
 import dagger.BindsInstance;
 import dagger.Component;
 
-@Singleton
-@Component(
-        modules = {
-                HashAssistance.class,
-                SharedPreferencesAssistance.class
-        }
-)
+@AppComponentScope
+@Component
 public interface AppComponent {
-
-    //getters
     HashAssistance getHashAssistance();
-
-    //injections
-    void inject(Activity activity);
 }

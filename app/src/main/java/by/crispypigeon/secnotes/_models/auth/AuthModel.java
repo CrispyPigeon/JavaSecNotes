@@ -1,4 +1,6 @@
-package by.crispypigeon.secnotes._model.auth;
+package by.crispypigeon.secnotes._models.auth;
+
+import javax.inject.Inject;
 
 import by.crispypigeon.secnotes.assistances.encryption.HashAssistance;
 import by.crispypigeon.secnotes.assistances.storage.SharedPreferencesAssistance;
@@ -15,7 +17,7 @@ public class AuthModel {
     }
 
     public boolean isAccountExists() {
-       // String savedPass = _sharedPreferencesAssistance.GetString(R.string.hash_key); //TODO get string by key
+        // String savedPass = _sharedPreferencesAssistance.GetString(R.string.hash_key); //TODO get string by key
 
 //        if (savedPass.isEmpty())
 //            return false;
@@ -28,7 +30,7 @@ public class AuthModel {
     }
 
     public boolean authenticate(String password) {
-//        String hashedPass = _hashAssistance.getHashedPass(password);
+        String hashedPass = _hashAssistance.getHashedPass(password);
 //        String savedPass = _sharedPreferencesAssistance.GetString(R.string.hash_key); //TODO get string by key
         return true; //comparePasswords(hashedPass, savedPass);
     }

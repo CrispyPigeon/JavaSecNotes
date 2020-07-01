@@ -1,6 +1,6 @@
 package by.crispypigeon.secnotes._presenters.auth;
 
-import by.crispypigeon.secnotes._model.auth.AuthModel;
+import by.crispypigeon.secnotes._models.auth.AuthModel;
 import by.crispypigeon.secnotes._views.auth.IAuthView;
 
 public class AuthPresenter {

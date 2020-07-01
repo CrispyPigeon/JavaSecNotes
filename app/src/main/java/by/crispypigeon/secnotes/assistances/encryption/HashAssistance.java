@@ -10,7 +10,6 @@ import javax.inject.Singleton;
 
 import dagger.Module;
 
-@Module
 public class HashAssistance {
     private String _hashAlgorithm;
 

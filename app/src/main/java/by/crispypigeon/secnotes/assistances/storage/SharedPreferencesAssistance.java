@@ -9,11 +9,11 @@ import javax.inject.Provider;
 
 public class SharedPreferencesAssistance {
 
-    @Inject
     private Activity _context;
 
-    public SharedPreferencesAssistance(Provider<Activity> context) {
-        _context = context.get();
+    @Inject
+    public SharedPreferencesAssistance(Activity context) {
+        _context = context;
     }
 
     public void SaveString(String key, String string) {
@@ -23,7 +23,7 @@ public class SharedPreferencesAssistance {
         editor.apply();
     }
 
-    public String GetString(String key){
+    public String GetString(String key) {
         SharedPreferences sharedPref = _context.getPreferences(Context.MODE_PRIVATE);
         String defaultValue = "";
         return sharedPref.getString(key, defaultValue);
