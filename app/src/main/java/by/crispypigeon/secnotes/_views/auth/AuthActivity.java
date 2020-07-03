@@ -6,8 +6,12 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
 
+import by.crispypigeon.secnotes.MyApplication;
 import by.crispypigeon.secnotes.R;
 import by.crispypigeon.secnotes._presenters.auth.AuthPresenter;
+import by.crispypigeon.secnotes.di.activities.ActivityComponent;
+import by.crispypigeon.secnotes.di.activities.ActivityModule;
+import by.crispypigeon.secnotes.di.activities.DaggerActivityComponent;
 
 public class AuthActivity extends AppCompatActivity implements IAuthView {
 
@@ -31,7 +35,10 @@ public class AuthActivity extends AppCompatActivity implements IAuthView {
     }
 
     private void initializeDI() {
-       // DaggerAppComponent.create().inject(this);
+        ActivityComponent mainActivityComponent = DaggerActivityComponent.builder()
+                .activityModule(new ActivityModule(this))
+                .appComponent(MyApplication.get(this).getApplicationComponent())
+                .build();
     }
 
     private void initializeControls() {

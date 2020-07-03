@@ -20,7 +20,7 @@ public class MyApplication extends Application {
         appComponent = DaggerAppComponent.builder().build();
     }
 
-    public AppComponent getRandomUserApplicationComponent() {
+    public AppComponent getApplicationComponent() {
         return appComponent;
     }
 }
