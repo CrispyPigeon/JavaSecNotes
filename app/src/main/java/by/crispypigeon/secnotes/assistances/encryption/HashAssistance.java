@@ -14,10 +14,6 @@ public class HashAssistance {
     private String _hashAlgorithm;
 
     @Inject
-    public HashAssistance() {
-        _hashAlgorithm = "SHA256";
-    }
-
     public HashAssistance(String algorithm) {
         _hashAlgorithm = algorithm;
     }

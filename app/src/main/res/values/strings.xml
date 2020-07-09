@@ -8,5 +8,6 @@
     <string name="signUp">Sign Up</string>
     <string name="signIn">Sign In</string>
     <string name="signUpDescription">First time? Just write your\n secure password.</string>
+    <string name="signInDescription">Write your secure password\n for authorization.</string>
     <string name="password">Password</string>
 </resources>
