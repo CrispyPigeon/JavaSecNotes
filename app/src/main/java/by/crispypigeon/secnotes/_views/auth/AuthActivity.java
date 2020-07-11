@@ -13,6 +13,8 @@ import javax.inject.Inject;
 import by.crispypigeon.secnotes.MyApplication;
 import by.crispypigeon.secnotes.R;
 import by.crispypigeon.secnotes._presenters.auth.AuthPresenter;
+import by.crispypigeon.secnotes.assistances.encryption.HashAssistance;
+import by.crispypigeon.secnotes.assistances.storage.SharedPreferencesAssistance;
 import by.crispypigeon.secnotes.di.activities.ActivityComponent;
 import by.crispypigeon.secnotes.di.activities.ActivityModule;
 import by.crispypigeon.secnotes.di.activities.DaggerActivityComponent;
@@ -21,6 +23,9 @@ import by.crispypigeon.secnotes.di.context.ContextModule;
 public class AuthActivity extends AppCompatActivity implements IAuthView {
 
     private AuthPresenter _authPresenter;
+
+    @Inject
+    SharedPreferencesAssistance sharedPreferencesAssistance;
 
     private Button authButton;
     private EditText passwordEditText;
@@ -43,6 +48,7 @@ public class AuthActivity extends AppCompatActivity implements IAuthView {
     private void initializeDI() {
         ActivityComponent mainActivityComponent = DaggerActivityComponent.builder()
                 .contextModule(new ContextModule(this))
+                .activityModule(new ActivityModule(this))
                 .appComponent(MyApplication.get(this).getApplicationComponent())
                 .build();
         mainActivityComponent.injectActivity(this);

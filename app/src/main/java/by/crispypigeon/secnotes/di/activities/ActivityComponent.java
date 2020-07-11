@@ -3,6 +3,7 @@ package by.crispypigeon.secnotes.di.activities;
 import android.app.Activity;
 import android.content.Context;
 
+import by.crispypigeon.secnotes._views.auth.AuthActivity;
 import by.crispypigeon.secnotes.assistances.storage.SharedPreferencesAssistance;
 import by.crispypigeon.secnotes.di.AppComponent;
 import by.crispypigeon.secnotes.di.context.ContextModule;
@@ -15,5 +16,7 @@ public interface ActivityComponent {
 
     Context getContext();
 
-    void injectActivity(Activity activity);
+    SharedPreferencesAssistance getSharedPreferencesAssistance();
+
+    void injectActivity(AuthActivity activity);
 }
