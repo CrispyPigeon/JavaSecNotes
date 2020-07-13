@@ -5,25 +5,33 @@ import by.crispypigeon.secnotes._views.auth.IAuthView;
 
 public class AuthPresenter {
 
-    private IAuthView _mainView;
-    private AuthModel _authModel;
+    private IAuthView authView;
+    private AuthModel authModel;
 
-    public AuthPresenter(IAuthView context) {
-        _mainView = context;
-        _authModel = new AuthModel();
+    public AuthPresenter(IAuthView view) {
+        authView = view;
+        authModel = new AuthModel();
 
         checkAccountExists();
     }
 
     private void checkAccountExists() {
-        if (_authModel.isAccountExists())
-            _mainView.loadSignInView();
+        if (authModel.isAccountExists())
+            authView.loadSignInView();
     }
 
     public void authenticateUser(String password) {
-        if (_authModel.isAccountExists())
-            _authModel.authenticate(password);
+        if (authModel.isAccountExists())
+            signIn(password);
         else
-            _authModel.signUp(password);
+            authModel.signUp(password);
+    }
+
+    private void signIn(String password) {
+        if (authModel.signIn(password)) {
+            //TODO navigation to notes fragment
+        } else {
+            authView.showPasswordError();
+        }
     }
 }

@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -13,8 +14,10 @@ import javax.inject.Inject;
 import by.crispypigeon.secnotes.MyApplication;
 import by.crispypigeon.secnotes.R;
 import by.crispypigeon.secnotes._presenters.auth.AuthPresenter;
+import by.crispypigeon.secnotes._views._controls.ErrorImageView;
 import by.crispypigeon.secnotes.assistances.encryption.HashAssistance;
 import by.crispypigeon.secnotes.assistances.storage.SharedPreferencesAssistance;
+import by.crispypigeon.secnotes.di.DaggerUtils;
 import by.crispypigeon.secnotes.di.activities.ActivityComponent;
 import by.crispypigeon.secnotes.di.activities.ActivityModule;
 import by.crispypigeon.secnotes.di.activities.DaggerActivityComponent;
@@ -24,12 +27,10 @@ public class AuthActivity extends AppCompatActivity implements IAuthView {
 
     private AuthPresenter _authPresenter;
 
-    @Inject
-    SharedPreferencesAssistance sharedPreferencesAssistance;
-
     private Button authButton;
     private EditText passwordEditText;
     private TextView descriptionTextView;
+    private ErrorImageView errorImageView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,18 +47,19 @@ public class AuthActivity extends AppCompatActivity implements IAuthView {
     }
 
     private void initializeDI() {
-        ActivityComponent mainActivityComponent = DaggerActivityComponent.builder()
+
+        DaggerUtils.activityComponent = DaggerActivityComponent.builder()
                 .contextModule(new ContextModule(this))
                 .activityModule(new ActivityModule(this))
-                .appComponent(MyApplication.get(this).getApplicationComponent())
+                .appComponent(DaggerUtils.appComponent)
                 .build();
-        mainActivityComponent.injectActivity(this);
     }
 
     private void initializeControls() {
         authButton = findViewById(R.id.authButton);
         passwordEditText = findViewById(R.id.passwordEditText);
         descriptionTextView = findViewById(R.id.descriptionTextView);
+        errorImageView = findViewById(R.id.errorImageView);
     }
 
     private void configureEvents() {
@@ -70,5 +72,11 @@ public class AuthActivity extends AppCompatActivity implements IAuthView {
     public void loadSignInView() {
         authButton.setText(R.string.signIn);
         descriptionTextView.setText(R.string.signInDescription);
+    }
+
+    @Override
+    public void showPasswordError() {
+        errorImageView.setVisibility(View.VISIBLE);
+        errorImageView.showErrorAnimation(this);
     }
 }

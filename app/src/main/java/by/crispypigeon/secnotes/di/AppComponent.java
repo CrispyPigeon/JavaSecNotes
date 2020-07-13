@@ -7,6 +7,7 @@ import android.content.Context;
 import javax.inject.Singleton;
 
 import by.crispypigeon.secnotes.MyApplication;
+import by.crispypigeon.secnotes._models.auth.AuthModel;
 import by.crispypigeon.secnotes._views.auth.AuthActivity;
 import by.crispypigeon.secnotes.assistances.encryption.HashAssistance;
 import by.crispypigeon.secnotes.assistances.storage.SharedPreferencesAssistance;
@@ -20,5 +21,4 @@ import dagger.Component;
 public interface AppComponent {
     HashAssistance getHashAssistance();
 
-   // void inject(AuthActivity activity);
 }

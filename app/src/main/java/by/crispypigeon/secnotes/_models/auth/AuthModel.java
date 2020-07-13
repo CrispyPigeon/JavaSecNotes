@@ -9,6 +9,7 @@ import by.crispypigeon.secnotes.R;
 import by.crispypigeon.secnotes.assistances.encryption.HashAssistance;
 import by.crispypigeon.secnotes.assistances.storage.SharedPreferencesAssistance;
 import by.crispypigeon.secnotes.di.DaggerAppComponent;
+import by.crispypigeon.secnotes.di.DaggerUtils;
 
 public class AuthModel {
 
@@ -22,7 +23,13 @@ public class AuthModel {
     public Context _context;
 
     public AuthModel() {
+        initializeDI();
+
         passKey = _context.getString(R.string.hash_key);
+    }
+
+    private void initializeDI() {
+        DaggerUtils.activityComponent.inject(this);
     }
 
     public boolean isAccountExists() {
@@ -38,7 +45,7 @@ public class AuthModel {
         _sharedPreferencesAssistance.SaveString(passKey, hashedPass);
     }
 
-    public boolean authenticate(String password) {
+    public boolean signIn(String password) {
         String hashedPass = _hashAssistance.getHashedPass(password);
         String savedPass = _sharedPreferencesAssistance.GetString(passKey);
         return savedPass.equals(hashedPass);
