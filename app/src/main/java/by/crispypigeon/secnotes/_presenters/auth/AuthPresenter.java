@@ -29,7 +29,7 @@ public class AuthPresenter {
 
     private void signIn(String password) {
         if (authModel.signIn(password)) {
-            //TODO navigation to notes fragment
+            authView.onSignedInView();
         } else {
             authView.showPasswordError();
         }

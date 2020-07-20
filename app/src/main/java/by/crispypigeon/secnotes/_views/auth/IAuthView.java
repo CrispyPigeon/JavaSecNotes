@@ -5,4 +5,6 @@ public interface IAuthView {
     void loadSignInView();
 
     void showPasswordError();
+
+    void onSignedInView();
 }

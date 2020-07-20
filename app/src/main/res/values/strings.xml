@@ -10,4 +10,6 @@
     <string name="signUpDescription">First time? Just write your\n secure password.</string>
     <string name="signInDescription">Write your secure password\n for authorization.</string>
     <string name="password">Password</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
