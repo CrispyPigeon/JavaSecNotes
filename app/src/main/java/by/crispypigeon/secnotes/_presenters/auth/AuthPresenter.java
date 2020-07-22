@@ -24,7 +24,13 @@ public class AuthPresenter {
         if (authModel.isAccountExists())
             signIn(password);
         else
-            authModel.signUp(password);
+            signUp(password);
+
+    }
+
+    private void signUp(String password) {
+        authModel.signUp(password);
+        authView.onSignedInView();
     }
 
     private void signIn(String password) {
