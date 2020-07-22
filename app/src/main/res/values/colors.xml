@@ -12,5 +12,8 @@
 
     <color name="colorTransparent">#ffffffff</color>
 
-    <color name="colorEntryFrame">#bfffffff</color>
+    <color name="colorAuthFrame">#bfffffff</color>
+    <color name="colorNotesFrame">#f2f2f2</color>
+
+    <color name="colorNoteItem">#404ec6c8</color>
 </resources>

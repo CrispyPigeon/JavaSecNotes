@@ -24,7 +24,6 @@
         android:gravity="center"
         android:textColor="@color/colorPrimaryText"
         android:textSize="64sp"
-        android:fontFamily="@font/orbitron"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toTopOf="@id/line_1"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -36,7 +35,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/hugeMargin"
         android:textColor="@color/colorPrimaryText"
-        android:fontFamily="@font/orbitron"
         android:text="@string/signUpDescription"
         android:gravity="center"
         android:textSize="20sp"
@@ -49,16 +47,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="textPassword"
-        android:background="@drawable/entryframe"
+        android:background="@drawable/auth_frame"
         android:hint="@string/password"
-        android:fontFamily="@font/orbitron"
         android:textSize="20sp"
         android:padding="@dimen/mediumMargin"
         android:layout_marginTop="@dimen/mediumMargin"
         app:layout_constraintTop_toBottomOf="@id/descriptionTextView"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        android:autofillHints="" />
+        app:layout_constraintRight_toRightOf="parent" />
 
     <Button
         android:id="@+id/authButton"
@@ -67,8 +63,7 @@
         android:layout_marginBottom="@dimen/mediumMargin"
         android:textSize="26sp"
         android:padding="@dimen/mediumMargin"
-        android:fontFamily="@font/orbitron"
-        android:background="@drawable/acceptbutton"
+        android:background="@drawable/accept_button"
         android:textColor="@color/colorPrimaryText"
         android:text="@string/signUp"
         app:layout_constraintBottom_toBottomOf="parent"/>
