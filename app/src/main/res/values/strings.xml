@@ -2,6 +2,7 @@
     <!-- Administrative -->
     <string name="app_name" translatable="false">Secure Notes</string>
     <string name="hash_key" translatable="false">secure-notes-mda5-hash-key</string>
+    <string name="plus" translatable="false">+</string>
 
 
     <!-- Vocabulary -->
@@ -11,6 +12,9 @@
     <string name="signInDescription">Write your secure password\n for authorization.</string>
     <string name="password">Password</string>
     <string name="find">find</string>
+    <string name="title">Title</string>
+    <string name="description">Description</string>
+    <string name="accept">Accept</string>
 
     <!-- Vocabulary.Pages Title -->
     <string name="notesPageTitle">Notes</string>

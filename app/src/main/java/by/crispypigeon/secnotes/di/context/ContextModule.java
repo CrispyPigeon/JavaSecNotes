@@ -2,6 +2,7 @@ package by.crispypigeon.secnotes.di.context;
 
 import android.content.Context;
 
+import javax.inject.Named;
 import javax.inject.Singleton;
 
 import by.crispypigeon.secnotes.di.AppComponentScope;

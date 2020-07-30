@@ -3,13 +3,12 @@ package by.crispypigeon.secnotes;
 import android.app.Activity;
 import android.app.Application;
 
-import javax.inject.Inject;
-
-import by.crispypigeon.secnotes.assistances.encryption.HashAssistance;
 import by.crispypigeon.secnotes.di.AppComponent;
 import by.crispypigeon.secnotes.di.DaggerAppComponent;
 import by.crispypigeon.secnotes.di.DaggerUtils;
-import by.crispypigeon.secnotes.di.services.HashAssistanceModule;
+import by.crispypigeon.secnotes.di.assistances.HashAssistanceModule;
+import io.realm.Realm;
+import io.realm.RealmConfiguration;
 
 public class MyApplication extends Application {
 
@@ -21,6 +20,24 @@ public class MyApplication extends Application {
     public void onCreate() {
         super.onCreate();
 
+        initializeDI();
+
+        initializeRealm();
+    }
+
+    private void initializeRealm() {
+        Realm.init(this);
+
+        RealmConfiguration config = new  RealmConfiguration.Builder()
+                .name(Consts.DB_Path)
+                .deleteRealmIfMigrationNeeded()
+                .schemaVersion(0)
+                .build();
+
+        Realm.setDefaultConfiguration(config);
+    }
+
+    private void initializeDI() {
         AppComponent appComponent = DaggerAppComponent
                 .builder()
                 .hashAssistanceModule(new HashAssistanceModule())

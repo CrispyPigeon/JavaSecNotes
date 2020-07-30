@@ -2,6 +2,8 @@ package by.crispypigeon.secnotes.di.activities;
 
 import android.app.Activity;
 
+import javax.inject.Named;
+
 import by.crispypigeon.secnotes.assistances.storage.SharedPreferencesAssistance;
 import dagger.Module;
 import dagger.Provides;

@@ -4,11 +4,9 @@ import android.content.Context;
 
 import javax.inject.Inject;
 
-import by.crispypigeon.secnotes.MyApplication;
 import by.crispypigeon.secnotes.R;
 import by.crispypigeon.secnotes.assistances.encryption.HashAssistance;
 import by.crispypigeon.secnotes.assistances.storage.SharedPreferencesAssistance;
-import by.crispypigeon.secnotes.di.DaggerAppComponent;
 import by.crispypigeon.secnotes.di.DaggerUtils;
 
 public class AuthModel {
@@ -16,16 +14,16 @@ public class AuthModel {
     private String passKey;
 
     @Inject
-    public SharedPreferencesAssistance _sharedPreferencesAssistance;
+    public SharedPreferencesAssistance sharedPreferencesAssistance;
     @Inject
-    public HashAssistance _hashAssistance;
+    public HashAssistance hashAssistance;
     @Inject
-    public Context _context;
+    public Context context;
 
     public AuthModel() {
         initializeDI();
 
-        passKey = _context.getString(R.string.hash_key);
+        passKey = context.getString(R.string.hash_key);
     }
 
     private void initializeDI() {
@@ -33,7 +31,7 @@ public class AuthModel {
     }
 
     public boolean isAccountExists() {
-        String savedPass = _sharedPreferencesAssistance.GetString(passKey);
+        String savedPass = sharedPreferencesAssistance.GetString(passKey);
 
         if (savedPass.isEmpty())
             return false;
@@ -41,13 +39,13 @@ public class AuthModel {
     }
 
     public void signUp(String password) {
-        String hashedPass = _hashAssistance.getHashedPass(password);
-        _sharedPreferencesAssistance.SaveString(passKey, hashedPass);
+        String hashedPass = hashAssistance.getHashedPass(password);
+        sharedPreferencesAssistance.SaveString(passKey, hashedPass);
     }
 
     public boolean signIn(String password) {
-        String hashedPass = _hashAssistance.getHashedPass(password);
-        String savedPass = _sharedPreferencesAssistance.GetString(passKey);
+        String hashedPass = hashAssistance.getHashedPass(password);
+        String savedPass = sharedPreferencesAssistance.GetString(passKey);
         return savedPass.equals(hashedPass);
     }
 }

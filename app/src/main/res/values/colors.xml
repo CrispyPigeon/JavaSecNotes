@@ -16,4 +16,6 @@
     <color name="colorNotesFrame">#f2f2f2</color>
 
     <color name="colorNoteItem">#404ec6c8</color>
+
+    <color name="colorSeparator">#9d9d9d</color>
 </resources>

@@ -2,6 +2,62 @@
 <androidx.cardview.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/mediumMargin">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/note_background"/>
+
+    <ImageView
+        android:layout_width="3dp"
+        android:layout_height="match_parent"
+        android:background="@drawable/note_background_accent"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/mediumMargin">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/noteTitleTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:maxLines="1"
+                android:layout_weight="1"
+                android:textSize="16sp"
+                android:text="Title"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/noteDateTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:maxLines="1"
+                android:textSize="16sp"
+                android:text="date"
+                android:gravity="end"/>
+
+        </LinearLayout>
+
+
+        <TextView
+            android:id="@+id/noteDescriptionTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:text="A lot of text\nA lot of text\nA lot of text\nA lot of text\n"
+            android:textStyle="bold"
+            android:maxLines="2"
+            android:layout_marginTop="@dimen/mediumMargin"/>
+
+    </LinearLayout>
 
 </androidx.cardview.widget.CardView>

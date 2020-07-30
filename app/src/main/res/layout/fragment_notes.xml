@@ -8,8 +8,8 @@
     android:background="@color/colorGradientBottom"
     tools:context="._views.notes.NotesFragment">
 
-    <include layout="@layout/toolbar"/>
-
+    <include layout="@layout/toolbar"
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <EditText
         android:id="@+id/finderEditText"
@@ -22,10 +22,25 @@
         app:layout_constraintTop_toBottomOf="@id/toolbar"/>
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/notesRecyclerView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         app:layout_constraintTop_toBottomOf="@id/finderEditText"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:paddingHorizontal="@dimen/mediumMargin"
+        android:paddingTop="@dimen/mediumMargin"
+        tools:listitem="@layout/note_template_item"/>
+
+    <Button
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:text="@string/plus"
+        android:background="@drawable/note_add_button"
+        android:textSize="22sp"
+        android:textColor="@color/colorPrimaryText"
+        android:layout_margin="@dimen/mediumMargin"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

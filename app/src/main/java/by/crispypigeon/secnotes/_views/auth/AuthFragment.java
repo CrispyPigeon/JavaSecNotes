@@ -25,7 +25,7 @@ import by.crispypigeon.secnotes.di.context.ContextModule;
 
 public class AuthFragment extends Fragment implements IAuthView {
 
-    private AuthPresenter _authPresenter;
+    private AuthPresenter authPresenter;
 
     private Button authButton;
     private EditText passwordEditText;
@@ -39,28 +39,17 @@ public class AuthFragment extends Fragment implements IAuthView {
         super.onViewCreated(view, savedInstanceState);
         navController = Navigation.findNavController(view);
 
-
-        initializeDI();
-
         initializeControls();
 
         configureEvents();
 
-        _authPresenter = new AuthPresenter(this);
+        authPresenter = new AuthPresenter(this);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_auth, container, false);
-    }
-
-    private void initializeDI() {
-        DaggerUtils.activityComponent = DaggerActivityComponent.builder()
-                .contextModule(new ContextModule(getContext()))
-                .activityModule(new ActivityModule(getActivity()))
-                .appComponent(DaggerUtils.appComponent)
-                .build();
     }
 
     private void initializeControls() {
@@ -73,7 +62,7 @@ public class AuthFragment extends Fragment implements IAuthView {
     }
 
     private void configureEvents() {
-        authButton.setOnClickListener(x -> _authPresenter.authenticateUser(passwordEditText.getText().toString()));
+        authButton.setOnClickListener(x -> authPresenter.authenticateUser(passwordEditText.getText().toString()));
     }
 
     @Override
