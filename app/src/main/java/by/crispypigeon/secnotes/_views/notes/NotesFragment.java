@@ -5,12 +5,15 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import org.jetbrains.annotations.NotNull;
@@ -28,10 +31,13 @@ import by.crispypigeon.secnotes.data.Note;
 public class NotesFragment extends Fragment implements INotesView {
 
     private TextView toolbarTitleTextView;
+    private Button addButton;
 
     private NotesAdapter notesAdapter;
 
     private NotesPresenter notesPresenter;
+
+    private NavController navController;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -42,6 +48,7 @@ public class NotesFragment extends Fragment implements INotesView {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        navController = Navigation.findNavController(view);
 
         initializeControls();
 
@@ -63,6 +70,12 @@ public class NotesFragment extends Fragment implements INotesView {
         View view = getView();
 
         toolbarTitleTextView = view.findViewById(R.id.toolbarTitleTextView);
+        addButton = view.findViewById(R.id.addButton);
+        addButton.setOnClickListener(x -> {
+            NotesFragmentDirections.ActionNotesFragmentToNoteFragment action =
+                    NotesFragmentDirections.actionNotesFragmentToNoteFragment(null);
+            navController.navigate(action);
+        });
 
         initializeRecyclerView(view);
     }

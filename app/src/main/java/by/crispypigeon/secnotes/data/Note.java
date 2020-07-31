@@ -1,8 +1,12 @@
 package by.crispypigeon.secnotes.data;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import java.io.Serializable;
 import java.util.Date;
 
-public class Note {
+public class Note implements Serializable {
 
     public int dbId;
 

@@ -32,6 +32,7 @@
         tools:listitem="@layout/note_template_item"/>
 
     <Button
+        android:id="@+id/addButton"
         android:layout_width="48dp"
         android:layout_height="48dp"
         android:text="@string/plus"
