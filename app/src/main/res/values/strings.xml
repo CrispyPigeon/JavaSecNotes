@@ -1,3 +1,35 @@
 <resources>
-    <string name="app_name">SecNotes</string>
+    <!-- Administrative -->
+
+    <string name="app_name" translatable="false">Secure Notes</string>
+    <string name="hash_key" translatable="false">secure-notes-mda5-hash-key</string>
+    <string name="plus" translatable="false">+</string>
+
+    <!-- Vocabulary -->
+
+    <string name="signUp">Sign Up</string>
+    <string name="signIn">Sign In</string>
+    <string name="signUpDescription">First time? Just write your\n secure password.</string>
+    <string name="signInDescription">Write your secure password\n for authorization.</string>
+    <string name="password">Password</string>
+    <string name="resetPassword">Reset password</string>
+    <string name="find">find</string>
+    <string name="title">Title</string>
+    <string name="description">Description</string>
+    <string name="accept">Accept</string>
+    <string name="noteNoDataMessage">Please, fill all fields.</string>
+    <string name="noteSuccessSavingMessage">Note successfully updated.</string>
+    <string name="deleteNoteTitle">Delete note</string>
+    <string name="deleteNoteMessage">Do you really want delete current note?</string>
+    <string name="authWarningTitle">Warning</string>
+    <string name="authWarningMessage">Password restoration is disabled and cannot be done due to hashing structure. The only way to access your account is password re-creation with inevitable notes wipe.</string>
+    <string name="positiveAnswer">Yes</string>
+    <string name="negativeAnswer">No</string>
+    <string name="ok">Ok</string>
+    <string name="resetAllDataTitle">Reset data</string>
+    <string name="resetAllDataMessage">Reset password and notes?</string>
+
+    <!-- Vocabulary.Pages Title -->
+    <string name="notesPageTitle">Notes</string>
+    <string name="notePageTitle">Note</string>
 </resources>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/colorGradientBottom"
+    tools:context="._views.note.NoteFragment">
+
+    <include layout="@layout/back_toolbar"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <View
+        android:id="@+id/separator1View"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/colorAccent"
+        app:layout_constraintTop_toBottomOf="@id/toolbar"/>
+
+    <EditText
+        android:id="@+id/noteTitleEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/title"
+        android:maxLines="1"
+        android:inputType="text"
+        android:textSize="16sp"
+        android:nextFocusDown="@id/noteDescriptionEditText"
+        android:background="@drawable/auth_frame"
+        android:padding="@dimen/mediumMargin"
+        app:layout_constraintTop_toBottomOf="@id/separator1View"/>
+
+    <View
+        android:id="@+id/separator2View"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/colorAccent"
+        app:layout_constraintTop_toBottomOf="@id/noteTitleEditText"/>
+
+    <EditText
+        android:id="@+id/noteDescriptionEditText"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:gravity="top"
+        android:hint="@string/description"
+        android:padding="@dimen/mediumMargin"
+        android:background="@drawable/auth_frame"
+        android:textSize="16sp"
+        app:layout_constraintTop_toBottomOf="@id/separator2View"
+        app:layout_constraintBottom_toTopOf="@id/noteAcceptButton"/>
+
+    <Button
+        android:id="@+id/noteAcceptButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/mediumMargin"
+        android:layout_margin="@dimen/mediumMargin"
+        android:text="@string/accept"
+        android:textSize="20sp"
+        android:textColor="@color/colorPrimaryText"
+        android:background="@drawable/accept_button"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
