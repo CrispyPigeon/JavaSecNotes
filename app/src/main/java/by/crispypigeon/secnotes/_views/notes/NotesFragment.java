@@ -28,10 +28,11 @@ import by.crispypigeon.secnotes._presenters.notes.NotesPresenter;
 import by.crispypigeon.secnotes._views.notes.RecyclerView.NotesAdapter;
 import by.crispypigeon.secnotes.data.Note;
 
-public class NotesFragment extends Fragment implements INotesView {
+public class NotesFragment extends Fragment implements INotesView, NotesAdapter.OnNoteListener {
 
     private TextView toolbarTitleTextView;
     private Button addButton;
+    private RecyclerView notesRecyclerView;
 
     private NotesAdapter notesAdapter;
 
@@ -52,9 +53,19 @@ public class NotesFragment extends Fragment implements INotesView {
 
         initializeControls();
 
+        initializeEvents();
+
         changeToolbarTitle();
 
         notesPresenter = new NotesPresenter(this);
+    }
+
+    private void initializeEvents() {
+        addButton.setOnClickListener(x -> {
+            NotesFragmentDirections.ActionNotesFragmentToNoteFragment action =
+                    NotesFragmentDirections.actionNotesFragmentToNoteFragment(null);
+            navController.navigate(action);
+        });
     }
 
     @Override
@@ -71,20 +82,29 @@ public class NotesFragment extends Fragment implements INotesView {
 
         toolbarTitleTextView = view.findViewById(R.id.toolbarTitleTextView);
         addButton = view.findViewById(R.id.addButton);
-        addButton.setOnClickListener(x -> {
-            NotesFragmentDirections.ActionNotesFragmentToNoteFragment action =
-                    NotesFragmentDirections.actionNotesFragmentToNoteFragment(null);
-            navController.navigate(action);
-        });
-
         initializeRecyclerView(view);
     }
 
     private void initializeRecyclerView(@NotNull View view) {
-        RecyclerView recyclerView = view.findViewById(R.id.notesRecyclerView);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        notesRecyclerView = view.findViewById(R.id.notesRecyclerView);
+        notesRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        notesAdapter = new NotesAdapter();
-        recyclerView.setAdapter(notesAdapter);
+        notesAdapter = new NotesAdapter(this);
+        notesRecyclerView.setAdapter(notesAdapter);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        notesPresenter.showNotes();
+    }
+
+    @Override
+    public void onNoteClick(int position)
+    {
+        Note chosenNote = notesAdapter.getNoteByPosition(position);
+        NotesFragmentDirections.ActionNotesFragmentToNoteFragment action =
+                NotesFragmentDirections.actionNotesFragmentToNoteFragment(chosenNote);
+        navController.navigate(action);
     }
 }

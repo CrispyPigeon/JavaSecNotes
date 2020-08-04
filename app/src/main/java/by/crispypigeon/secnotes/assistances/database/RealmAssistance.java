@@ -1,6 +1,7 @@
 package by.crispypigeon.secnotes.assistances.database;
 
 import java.util.List;
+import java.util.Objects;
 
 import javax.inject.Inject;
 
@@ -16,7 +17,7 @@ public class RealmAssistance {
     public Realm realm;
 
     @Inject
-    public RealmAssistance(Realm realm){
+    public RealmAssistance(Realm realm) {
         this.realm = realm;
 
         initializeDI();
@@ -27,24 +28,36 @@ public class RealmAssistance {
     }
 
     public List<EncryptedNote> getEncryptedNotes() {
-       return realm.where(EncryptedNote.class).findAll();
+        return realm.where(EncryptedNote.class).findAll();
     }
 
-    public void addEncryptedNote(EncryptedNote encryptedNote) {
+    public void addOrUpdateEncryptedNote(EncryptedNote encryptedNote) {
         realm.beginTransaction();
-        encryptedNote.id = getNewId(EncryptedNote.class);
-        realm.copyToRealm(encryptedNote);
+
+        if (encryptedNote.id == 0)
+            encryptedNote.id = getNewId(EncryptedNote.class);
+
+        realm.copyToRealmOrUpdate(encryptedNote);
         realm.commitTransaction();
     }
 
-    private <T extends RealmObject>int getNewId(Class<T> clazz){
-        int id;
-        id = realm.where(clazz).max(idField).intValue();
-        if (id == 0){
-            return 1;
+    private <T extends RealmObject> int getNewId(Class<T> clazz) {
+        Number id = realm.where(clazz).max(idField);
+        return (id == null) ? 1 : id.intValue() + 1;
+    }
+
+    public void deleteNoteById(int dbId) {
+        EncryptedNote encryptedNote = realm.where(EncryptedNote.class).equalTo(idField,dbId).findFirst();
+        if (encryptedNote != null){
+            realm.beginTransaction();
+            encryptedNote.deleteFromRealm();
+            realm.commitTransaction();
         }
-        else {
-            return ++id;
-        }
+    }
+
+    public void removeAll() {
+        realm.beginTransaction();
+        realm.deleteAll();
+        realm.commitTransaction();
     }
 }

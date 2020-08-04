@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.Toolbar
+    android:id="@+id/toolbar"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="?attr/actionBarSize"
+    android:background="@color/colorTransparent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageButton
+            android:id="@+id/toolbarBackImageButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_back_button"
+            android:layout_centerVertical="true"
+            android:paddingRight="@dimen/smallMargin"
+            android:background="@color/colorTransparent"/>
+
+        <TextView
+            android:id="@+id/toolbarTitleTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toEndOf="@id/toolbarBackImageButton"
+            android:fontFamily="@font/orbitron"
+            android:text="@string/app_name"
+            android:textColor="@color/colorGradientTop"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <ImageButton
+            android:id="@+id/toolbarDeleteImageButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_delete_button"
+            android:paddingRight="@dimen/smallMargin"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:background="@color/colorTransparent"/>
+
+    </RelativeLayout>
+
+</androidx.appcompat.widget.Toolbar>

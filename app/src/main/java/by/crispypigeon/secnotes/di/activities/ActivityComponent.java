@@ -3,6 +3,7 @@ package by.crispypigeon.secnotes.di.activities;
 import android.content.Context;
 
 import by.crispypigeon.secnotes._models.auth.AuthModel;
+import by.crispypigeon.secnotes._models.note.NoteModel;
 import by.crispypigeon.secnotes._models.notes.NotesModel;
 import by.crispypigeon.secnotes.assistances.database.RealmAssistance;
 import by.crispypigeon.secnotes.assistances.encryption.CryptographyAssistance;
@@ -28,8 +29,8 @@ public interface ActivityComponent {
     CryptographyAssistance getCryptographyAssistance();
 
     void inject(AuthModel obj);
-
     void inject(NotesModel obj);
+    void inject(NoteModel obj);
 
     void inject(RealmAssistance obj);
 

@@ -14,11 +14,9 @@ public class NotesPresenter {
     public NotesPresenter(INotesView notesView) {
         this.notesView = notesView;
         notesModel = new NotesModel();
-
-        loadNotes();
     }
 
-    private void loadNotes() {
+    public void showNotes() {
         ArrayList<Note> notes = notesModel.getDecryptedNotes();
 
         if (notes.size() > 0)

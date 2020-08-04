@@ -18,19 +18,25 @@ public class AuthPresenter {
     private void checkAccountExists() {
         if (authModel.isAccountExists())
             authView.loadSignInView();
+        else
+            authView.loadSignUpView();
     }
 
     public void authenticateUser(String password) {
+        if (!authModel.validateString(password)) {
+            authView.showPasswordError();
+            return;
+        }
+
         if (authModel.isAccountExists())
             signIn(password);
         else
             signUp(password);
-
     }
 
     private void signUp(String password) {
         authModel.signUp(password);
-        authView.onSignedInView();
+        authView.onUpdatedSingedInView();
     }
 
     private void signIn(String password) {
@@ -39,5 +45,12 @@ public class AuthPresenter {
         } else {
             authView.showPasswordError();
         }
+    }
+
+    public void resetData() {
+        authModel.resetPassword();
+        authModel.resetNotes();
+        checkAccountExists();
+        authView.clearErrorAndPassword();
     }
 }

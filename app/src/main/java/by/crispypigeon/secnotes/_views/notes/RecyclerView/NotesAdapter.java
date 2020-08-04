@@ -14,19 +14,24 @@ import java.util.ArrayList;
 import by.crispypigeon.secnotes.R;
 import by.crispypigeon.secnotes.data.Note;
 
-public class NotesAdapter extends  RecyclerView.Adapter<NotesAdapter.NoteViewHolder> {
+public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.NoteViewHolder> {
 
-    private static final String dateFormatPattern  = "dd.MM HH:mm";
+    private static final String dateFormatPattern = "dd.MM HH:mm";
 
-    ArrayList<Note> notesList = new ArrayList<>();
-    SimpleDateFormat simpleDateFormat = new SimpleDateFormat(dateFormatPattern);
+    private ArrayList<Note> notesList = new ArrayList<>();
+    private SimpleDateFormat simpleDateFormat = new SimpleDateFormat(dateFormatPattern);
+    private OnNoteListener onNoteListener;
+
+    public NotesAdapter(OnNoteListener onNoteListener) {
+        this.onNoteListener = onNoteListener;
+    }
 
     @NonNull
     @Override
     public NoteViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.note_template_item, parent, false);
-        return new NoteViewHolder(view);
+        return new NoteViewHolder(view, onNoteListener);
     }
 
     @Override
@@ -39,35 +44,54 @@ public class NotesAdapter extends  RecyclerView.Adapter<NotesAdapter.NoteViewHol
         return notesList.size();
     }
 
-    public void setNotesList(ArrayList<Note> notesList){
+    public void setNotesList(ArrayList<Note> notesList) {
         this.notesList = notesList;
         notifyDataSetChanged();
     }
 
-    public void clearNotesList(){
+    public void clearNotesList() {
         notesList.clear();
         notifyDataSetChanged();
     }
 
-    class NoteViewHolder extends RecyclerView.ViewHolder{
+    public Note getNoteByPosition(int position) {
+        return notesList.get(position);
+    }
+
+    public class NoteViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         private TextView titleTextView;
         private TextView descriptionTextView;
         private TextView dateTextView;
 
-        public NoteViewHolder(@NonNull View itemView) {
+        private OnNoteListener mOnNoteListener;
+
+        public NoteViewHolder(@NonNull View itemView, OnNoteListener onNoteListener) {
             super(itemView);
 
             titleTextView = itemView.findViewById(R.id.noteTitleTextView);
             descriptionTextView = itemView.findViewById(R.id.noteDescriptionTextView);
             dateTextView = itemView.findViewById(R.id.noteDateTextView);
+
+            this.mOnNoteListener = onNoteListener;
+
+            itemView.setOnClickListener(this);
         }
 
-        public void bind(Note note, SimpleDateFormat simpleDateFormat){
+        public void bind(Note note, SimpleDateFormat simpleDateFormat) {
             titleTextView.setText(note.title);
             descriptionTextView.setText(note.description);
             dateTextView.setText(simpleDateFormat.format(note.date));
 
         }
+
+        @Override
+        public void onClick(View v) {
+            mOnNoteListener.onNoteClick(getAdapterPosition());
+        }
+    }
+
+    public interface OnNoteListener {
+        void onNoteClick(int position);
     }
 }

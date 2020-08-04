@@ -8,7 +8,7 @@
     android:background="@color/colorGradientBottom"
     tools:context="._views.note.NoteFragment">
 
-    <include layout="@layout/toolbar"
+    <include layout="@layout/back_toolbar"
         app:layout_constraintTop_toTopOf="parent"/>
 
     <View
@@ -19,12 +19,14 @@
         app:layout_constraintTop_toBottomOf="@id/toolbar"/>
 
     <EditText
-        android:id="@+id/noteTitleTextView"
+        android:id="@+id/noteTitleEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/title"
         android:maxLines="1"
+        android:inputType="text"
         android:textSize="16sp"
+        android:nextFocusDown="@id/noteDescriptionEditText"
         android:background="@drawable/auth_frame"
         android:padding="@dimen/mediumMargin"
         app:layout_constraintTop_toBottomOf="@id/separator1View"/>
@@ -34,20 +36,22 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="@color/colorAccent"
-        app:layout_constraintTop_toBottomOf="@id/noteTitleTextView"/>
+        app:layout_constraintTop_toBottomOf="@id/noteTitleEditText"/>
 
-    <TextView
-        android:id="@+id/noteDescriptionTextView"
+    <EditText
+        android:id="@+id/noteDescriptionEditText"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:gravity="top"
         android:hint="@string/description"
         android:padding="@dimen/mediumMargin"
+        android:background="@drawable/auth_frame"
         android:textSize="16sp"
         app:layout_constraintTop_toBottomOf="@id/separator2View"
-        app:layout_constraintBottom_toBottomOf="@id/acceptButton"/>
+        app:layout_constraintBottom_toTopOf="@id/noteAcceptButton"/>
 
     <Button
-        android:id="@+id/acceptButton"
+        android:id="@+id/noteAcceptButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="@dimen/mediumMargin"

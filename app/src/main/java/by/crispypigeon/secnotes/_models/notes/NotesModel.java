@@ -50,20 +50,4 @@ public class NotesModel {
 
         return notes;
     }
-
-//    private void addNote() {
-//        EncryptedNote encryptedNote = new EncryptedNote();
-//
-//        try {
-//            byte[] iv = cryptographyAssistance.getIV();
-//            encryptedNote.title = cryptographyAssistance.encrypt("Title".getBytes(), iv);
-//            encryptedNote.description = cryptographyAssistance.encrypt("Description".getBytes(), iv);
-//            encryptedNote.date = Calendar.getInstance().getTime();
-//            encryptedNote.initializationVector = iv;
-//
-//            realm.addEncryptedNote(encryptedNote);
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//    }
 }
